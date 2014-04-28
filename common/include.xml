@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <window fullscreen="false" background="#cccccc" />
+    <window width="900" height="600" resizable="true" unless="mobile" />
+
+    <!-- Show trace output to terminal -->
+    <set name="SHOW_CONSOLE" value="1" if="debug" />
+
+</project>

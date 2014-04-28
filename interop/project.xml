@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="InteropTest" package="com.example.interoptest" version="1.0.0" company="Company Name" />
+    <app main="Main" path="bin" file="InteropTest" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+    <include path="../common" />
+    <include path="../../interop-0.1" />
+
+    <assets path="assets" exclude="openfl.svg" />
+    <icon path="assets/openfl.svg" />
+
+    <setenv name="LAUNCH_FROM_URL_SCHEME" value="interoptest" />
+
+</project>

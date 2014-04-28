@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="BarcodeTest" package="com.example.barcodetest" version="1.0.0" company="Company Name" />
+    <app main="Main" path="bin" file="BarcodeTest" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+    <include path="../common" />
+    <include path="../../barcode-0.2" />
+
+    <assets path="assets" exclude="openfl.svg" />
+    <icon path="assets/openfl.svg" />
+
+</project>
