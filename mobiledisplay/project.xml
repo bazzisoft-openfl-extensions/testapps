@@ -8,7 +8,7 @@
 
     <haxelib name="openfl" />
     <include path="../common" />
-    <include path="../../mobiledisplay-0.1" />
+    <include path="../../mobiledisplay" />
 
     <assets path="assets" exclude="openfl.svg" />
     <icon path="assets/openfl.svg" />

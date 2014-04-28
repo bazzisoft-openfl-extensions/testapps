@@ -18,8 +18,8 @@
   <classpaths>
     <class path="src" />
     <class path="..\common" />
-    <class path="..\..\extensionkit-0.1" />
-    <class path="..\..\interop-0.1" />
+    <class path="..\..\extensionkit" />
+    <class path="..\..\interop" />
     <class path="bin\flash\haxe" />
   </classpaths>
   <!-- Build options -->
