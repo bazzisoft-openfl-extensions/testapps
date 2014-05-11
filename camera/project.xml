@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="CameraTest" package="com.example.cameratest" version="1.0.0" company="Company Name" />
+    <app main="Main" path="bin" file="CameraTest" swf-version="11.3" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+    <include path="../common" />
+    <include path="../../camera" />
+
+    <assets path="assets" exclude="openfl.svg" />
+    <icon path="assets/openfl.svg" />
+    
+</project>
