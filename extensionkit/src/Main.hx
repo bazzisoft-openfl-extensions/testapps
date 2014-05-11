@@ -22,6 +22,19 @@ class Main extends Sprite implements ITestPanelViewDelegate
 
         m_testPanelView = new TestPanelView(this, [BUTTON_TRIGGER_TEST_EVENT], true);
         addChild(m_testPanelView);
+        
+        var s = ExtensionKit.CreateTemporaryFile();
+        trace("CreateTemporaryFile: " + s);
+        #if !flash
+        if (s != null) 
+        {
+            sys.FileSystem.deleteFile(s);
+        }
+        #end
+        
+        trace("GetTempDirectory: " + ExtensionKit.GetTempDirectory());
+        trace("GetPrivateAppFilesDirectory: " + ExtensionKit.GetPrivateAppFilesDirectory());
+        trace("GetPublicDocumentsDirectory: " + ExtensionKit.GetPublicDocumentsDirectory());        
   	}
 
     public function ProcessTestPanelButtonClick(button:String) : Void

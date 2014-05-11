@@ -17,6 +17,7 @@ import openfl.Assets;
 class Main extends Sprite implements ITestPanelViewDelegate
 {
     private static inline var BUTTON_CAPTURE_PHOTO = "CAPTURE PHOTO";
+    private static inline var BUTTON_CAPTURE_WITH_OVERLAY = "CAPTURE WITH OVERLAY";
     private static inline var BUTTON_SET_FAKE_PHOTO_RESULT = "SET FAKE PHOTO RESULT";
     private static inline var BUTTON_SIMULATE_PHOTO_CAPTURED = "SIMULATE PHOTO CAPTURED";
     private static inline var BUTTON_SIMULATE_PHOTO_CANCELLED = "SIMULATE PHOTO CANCELLED";
@@ -27,7 +28,7 @@ class Main extends Sprite implements ITestPanelViewDelegate
     {
         super();
 
-        m_testPanelView = new TestPanelView(this, [BUTTON_CAPTURE_PHOTO, BUTTON_SET_FAKE_PHOTO_RESULT, BUTTON_SIMULATE_PHOTO_CAPTURED, BUTTON_SIMULATE_PHOTO_CANCELLED]);
+        m_testPanelView = new TestPanelView(this, [BUTTON_CAPTURE_PHOTO, BUTTON_CAPTURE_WITH_OVERLAY, BUTTON_SET_FAKE_PHOTO_RESULT, BUTTON_SIMULATE_PHOTO_CAPTURED, BUTTON_SIMULATE_PHOTO_CANCELLED]);
         addChild(m_testPanelView);
 
         Camera.Initialize();
@@ -40,9 +41,19 @@ class Main extends Sprite implements ITestPanelViewDelegate
         switch (button)
         {
             case BUTTON_CAPTURE_PHOTO:
+                Camera.ClearCameraOverlayImage();
                 var ret = Camera.CapturePhoto(1024);
                 trace("Camera.CapturePhoto(): " + Std.string(ret));
 
+            case BUTTON_CAPTURE_WITH_OVERLAY:
+                if (!Camera.HasCameraOverlayImage())
+                {
+                    Camera.SetCameraOverlayImage(Assets.getBitmapData("assets/img/camera-overlay.png"));
+                }
+                
+                var ret = Camera.CapturePhoto(1024);
+                trace("Camera.CapturePhoto(): " + Std.string(ret));
+                
             case BUTTON_SET_FAKE_PHOTO_RESULT:
                 Camera.SetFakePhotoResult(Assets.getBitmapData("assets/img/nature.jpg"));
                 trace("Camera.SetFakePhotoResult(): Set nature image.");
