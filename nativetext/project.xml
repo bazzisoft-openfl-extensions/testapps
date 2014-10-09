@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="NativeTextTest" package="com.example.nativetexttest" version="1.0.0" company="Company Name" />
+    <app main="Main" path="bin" file="NativeTextTest" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+    <include path="../common" />
+    <include path="../../nativetext-0.1" />
+
+    <assets path="assets" exclude="openfl.svg" />
+    <icon path="assets/openfl.svg" />
+
+</project>
