@@ -31,7 +31,7 @@ class Main extends Sprite implements ITestPanelViewDelegate
         switch (button)
         {
 			case BUTTON_ADD_TEXT_FIELD:
-				NativeText.AddTextField(Math.round(m_testPanelView.width + 10), 10);
+				NativeText.AddTextField(100, 100);
 				m_testPanelView.WriteLine("AddTextField - CALLED");
         }
     }
