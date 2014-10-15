@@ -8,6 +8,8 @@ import haxe.Utf8;
 import nativetext.event.NativeTextEvent;
 import nativetext.NativeText;
 import nativetext.NativeTextField;
+import openfl.events.FocusEvent;
+import openfl.events.KeyboardEvent;
 
 
 class Main extends Sprite implements ITestPanelViewDelegate
@@ -16,6 +18,7 @@ class Main extends Sprite implements ITestPanelViewDelegate
 	private static inline var BUTTON_REMOVE_TEXT_FIELD = "REMOVE NATIVE TEXT FIELD";
 	private static inline var BUTTON_GET_TEXT = "GET TEXT";
 	private static inline var BUTTON_SET_TEXT = "SET RANDOM TEXT";
+	private static inline var BUTTON_TEST_FOCUS = "TEST FOCUS";
 
     private var m_testPanelView:TestPanelView = null;
 	private var m_textFieldStack = new Array<NativeTextField>();
@@ -28,9 +31,7 @@ class Main extends Sprite implements ITestPanelViewDelegate
 
         NativeText.Initialize();
 
-        stage.addEventListener(NativeTextEvent.TEXT_CHANGED, function(e) { trace("Stage Event: " + e); } );
-
-        m_testPanelView = new TestPanelView(this, [BUTTON_ADD_TEXT_FIELD, BUTTON_REMOVE_TEXT_FIELD, BUTTON_GET_TEXT, BUTTON_SET_TEXT]);
+        m_testPanelView = new TestPanelView(this, [BUTTON_ADD_TEXT_FIELD, BUTTON_REMOVE_TEXT_FIELD, BUTTON_GET_TEXT, BUTTON_SET_TEXT, BUTTON_TEST_FOCUS]);
         addChild(m_testPanelView);
   	}
 
@@ -55,8 +56,12 @@ class Main extends Sprite implements ITestPanelViewDelegate
 			{
 				var tf = new NativeTextField();
 				m_textFieldStack.push(tf);
-				tf.addEventListener(NativeTextEvent.TEXT_CHANGED, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+
+				tf.addEventListener(Event.CHANGE, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+				tf.addEventListener(FocusEvent.FOCUS_IN, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+				tf.addEventListener(FocusEvent.FOCUS_OUT, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
 				tf.addEventListener(NativeTextEvent.ACTION_KEY_PRESSED, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+				
 				m_testPanelView.WriteLine("Created text field #" + tf.eventDispatcherId + ".");
 			}
 				
@@ -108,6 +113,35 @@ class Main extends Sprite implements ITestPanelViewDelegate
 					m_testPanelView.WriteLine("No text fields exist.");
 				}
 			}
+			
+			case BUTTON_TEST_FOCUS:
+			{
+				if (m_textFieldStack.length > 0)
+				{
+					var tf = m_textFieldStack[m_textFieldStack.length - 1];
+					
+					m_testPanelView.WriteLine("Text field (#" + tf.eventDispatcherId + ") is focused: " + tf.IsFocused());
+					m_testPanelView.WriteLine("Setting focus to text field (#" + tf.eventDispatcherId + ").");
+					tf.SetFocus();
+					
+					haxe.Timer.delay(function() {
+						m_testPanelView.WriteLine("Text field (#" + tf.eventDispatcherId + ") is focused: " + tf.IsFocused());
+					}, 200);
+					
+					haxe.Timer.delay(function() {
+						m_testPanelView.WriteLine("Clearing focus from text field (#" + tf.eventDispatcherId + ").");
+						tf.ClearFocus();
+						
+						haxe.Timer.delay(function() {
+							m_testPanelView.WriteLine("Text field (#" + tf.eventDispatcherId + ") is focused: " + tf.IsFocused());
+						}, 200);						
+					}, 3000);
+				}
+				else
+				{
+					m_testPanelView.WriteLine("No text fields exist.");
+				}
+			}			
         }
     }
 }
