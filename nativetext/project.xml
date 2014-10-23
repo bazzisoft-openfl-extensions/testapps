@@ -8,7 +8,7 @@
 
     <haxelib name="openfl" />
     <include path="../common" />
-    <include path="../../nativetext-0.1" />
+    <include path="../../nativetext" />
 
     <assets path="assets" exclude="openfl.svg" />
     <icon path="assets/openfl.svg" />
