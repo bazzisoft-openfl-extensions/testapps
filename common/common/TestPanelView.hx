@@ -156,12 +156,13 @@ class TestPanelView extends Sprite
         tf.type = TextFieldType.DYNAMIC;
         tf.background = true;
         tf.backgroundColor = 0xffffff;
+        tf.textColor = 0x999999;
         tf.border = true;
         tf.borderColor = 0x000000;
         tf.multiline = true;
         tf.wordWrap = true;
         tf.text = "OUTPUT LOG:\n";
-
+        
         #if mobile
         tf.selectable = false;
         #end
