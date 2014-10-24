@@ -3,7 +3,6 @@ package;
 import common.ITestPanelViewDelegate;
 import common.TestPanelView;
 import flash.display.Sprite;
-import flash.events.Event;
 import haxe.Utf8;
 import nativetext.event.NativeTextEvent;
 import nativetext.NativeText;
@@ -11,8 +10,6 @@ import nativetext.NativeTextField;
 import nativetext.NativeTextFieldAlignment;
 import nativetext.NativeTextFieldKeyboardType;
 import nativetext.NativeTextFieldReturnKeyType;
-import openfl.events.FocusEvent;
-import openfl.events.KeyboardEvent;
 
 
 class Main extends Sprite implements ITestPanelViewDelegate
@@ -70,9 +67,9 @@ class Main extends Sprite implements ITestPanelViewDelegate
                 var tf = new NativeTextField({ x:x, y:y, width:w, fontSize:60, fontColor:0xff0000, placeholder:placeholder, textAlignment:align, keyboardType:keyboardType, returnKeyType:returnKeyType });
                 m_textFieldStack.push(tf);
 
-                tf.addEventListener(Event.CHANGE, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
-                tf.addEventListener(FocusEvent.FOCUS_IN, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
-                tf.addEventListener(FocusEvent.FOCUS_OUT, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+                tf.addEventListener(NativeTextEvent.CHANGE, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+                tf.addEventListener(NativeTextEvent.FOCUS_IN, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
+                tf.addEventListener(NativeTextEvent.FOCUS_OUT, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
                 tf.addEventListener(NativeTextEvent.RETURN_KEY_PRESSED, function(e) { m_testPanelView.WriteLine("Textfield #" + tf.eventDispatcherId + ": " + e); } );
                 
                 m_testPanelView.WriteLine("Created text field #" + tf.eventDispatcherId + ".");
