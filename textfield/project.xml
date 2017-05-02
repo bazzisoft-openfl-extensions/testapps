@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="TextField" package="com.example.textfield" version="1.0.0" company="Company Name" />
+    <app main="Main" path="bin" file="TextField" />
+
+    <window fullscreen="false" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
+
+    <assets path="assets" exclude="openfl.svg" />
+    <icon path="assets/openfl.svg" />
+
+    <!-- Show trace output to terminal -->
+    <set name="SHOW_CONSOLE" value="1" if="debug" />
+
+</project>
